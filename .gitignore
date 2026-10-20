@@ -1,0 +1,14 @@
+# Operating system
+.DS_Store
+Thumbs.db
+
+# IDE and editor
+.vscode/
+.idea/
+
+# Temporary files
+*.log
+*.tmp
+
+# Runtime order data
+/orders/orders.json

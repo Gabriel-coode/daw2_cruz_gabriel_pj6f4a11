@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Orders | Automotive Order Management</title>
+</head>
+<body>
+
+    <main>
+        <h1>View Orders</h1>
+
+        <form id="queryForm">
+            <fieldset>
+                <legend>Select Query Type</legend>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="queryType"
+                        value="all"
+                        checked
+                    >
+                    View All Orders
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="queryType"
+                        value="single"
+                    >
+                    View One Order
+                </label>
+            </fieldset>
+
+            <div id="orderIdContainer" hidden>
+                <label for="orderId">Order ID</label>
+                <input
+                    type="text"
+                    id="orderId"
+                    name="orderId"
+                >
+            </div>
+
+            <button type="submit">View Orders</button>
+        </form>
+
+        <nav aria-label="Navigation">
+            <p><a href="operations.html">Back to Operations</a></p>
+            <p><a href="index.html">Back to Home</a></p>
+        </nav>
+    </main>
+
+    <script>
+        const form = document.querySelector("#queryForm");
+        const radioButtons = document.querySelectorAll(
+            'input[name="queryType"]'
+        );
+        const orderIdContainer = document.querySelector(
+            "#orderIdContainer"
+        );
+        const orderIdInput = document.querySelector("#orderId");
+
+        function updateQueryForm() {
+            const selected = document.querySelector(
+                'input[name="queryType"]:checked'
+            ).value;
+
+            const singleOrder = selected === "single";
+
+            orderIdContainer.hidden = !singleOrder;
+            orderIdInput.required = singleOrder;
+        }
+
+        radioButtons.forEach((radio) => {
+            radio.addEventListener("change", updateQueryForm);
+        });
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const selected = document.querySelector(
+                'input[name="queryType"]:checked'
+            ).value;
+
+            if (selected === "all") {
+                window.location.href =
+                    "../server/viewAllOrders.php";
+            } else {
+                const id = orderIdInput.value.trim();
+
+                if (id === "") {
+                    return;
+                }
+
+                window.location.href =
+                    "../server/viewOrder.php?orderId=" +
+                    encodeURIComponent(id);
+            }
+        });
+
+        updateQueryForm();
+    </script>
+
+</body>
+</html>

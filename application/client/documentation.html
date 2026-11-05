@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation | Automotive Order Management</title>
+</head>
+<body>
+
+    <main>
+        <h1>Application Documentation</h1>
+
+        <section>
+            <h2>About the Application</h2>
+
+            <p>
+                Automotive Order Management is an application
+                designed to manage customer orders for a
+                European automotive retail company.
+            </p>
+
+            <p>
+                Authorized users can create orders, calculate
+                totals including 21% VAT, and consult
+                previously saved orders.
+            </p>
+        </section>
+
+        <section>
+            <h2>1. User Authentication</h2>
+
+            <p>
+                Open the login page and enter your username
+                and password. Both fields are required.
+            </p>
+
+            <p>
+                Successful authentication provides access
+                to the operations menu.
+            </p>
+        </section>
+
+        <section>
+            <h2>2. Create a New Order</h2>
+
+            <ol>
+                <li>Open the operations menu.</li>
+                <li>Select Create New Order.</li>
+                <li>Enter a unique order ID.</li>
+                <li>Enter the customer's required information.</li>
+                <li>Select at least one automotive product.</li>
+                <li>Enter a positive quantity for each selected product.</li>
+                <li>Click Save Order.</li>
+            </ol>
+
+            <p>
+                The server validates the information, calculates
+                the total including 21% VAT, and stores
+                the order in the orders file.
+            </p>
+        </section>
+
+        <section>
+            <h2>3. View Orders</h2>
+
+            <p>
+                Select View Orders from the operations menu.
+            </p>
+
+            <h3>View All Orders</h3>
+            <p>
+                Choose View All Orders to display every
+                previously saved order.
+            </p>
+
+            <h3>View One Order</h3>
+            <p>
+                Choose View One Order, enter an order ID,
+                and submit the query to display its details.
+            </p>
+        </section>
+
+        <section>
+            <h2>4. Error Messages</h2>
+
+            <p>
+                The application reports invalid input,
+                duplicate order identifiers, missing orders,
+                and authentication errors.
+            </p>
+        </section>
+
+        <section>
+            <h2>5. Logout</h2>
+
+            <p>
+                Use the Logout button from the operations menu
+                to end the current session.
+            </p>
+        </section>
+
+        <nav aria-label="Navigation">
+            <p><a href="index.html">Back to Home</a></p>
+            <p><a href="login.html">Go to Authentication</a></p>
+        </nav>
+    </main>
+
+</body>
+</html>

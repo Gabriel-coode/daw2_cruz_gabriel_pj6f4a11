@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operations | Automotive Order Management</title>
+    <script src="operations.js" defer></script>
+</head>
+<body>
+
+    <main>
+        <h1>Operations Menu</h1>
+
+        <p id="sessionMessage" role="status">
+            Checking authentication...
+        </p>
+
+        <section id="operationsContent" hidden>
+
+            <p id="welcomeMessage"></p>
+
+            <form id="operationsForm">
+
+                <fieldset>
+                    <legend>Select an Operation</legend>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="operation"
+                            value="create"
+                            checked
+                        >
+                        Create New Order
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="operation"
+                            value="view"
+                        >
+                        View Orders
+                    </label>
+                </fieldset>
+
+                <button type="submit">
+                    Access Selected Operation
+                </button>
+
+            </form>
+
+            <form id="logoutForm">
+                <button type="submit">Logout</button>
+            </form>
+
+        </section>
+
+        <nav aria-label="Navigation">
+            <a href="index.html">Back to Home</a>
+        </nav>
+
+    </main>
+
+</body>
+</html>

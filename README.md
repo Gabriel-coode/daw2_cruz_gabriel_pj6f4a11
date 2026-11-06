@@ -26,12 +26,23 @@ This is a web application for managing customer orders in an automotive store.
 
 The application is designed to run locally using Apache and PHP through XAMPP.
 
-1. Copy or clone the repository into `C:\xampp\htdocs\orderManagementApp`.
-2. Start Apache from the XAMPP Control Panel.
-3. Make sure Apache SSL is enabled and port 443 is available.
-4. Open the application at:
+Installation
 
-   `https://localhost/orderManagementApp/application/client/index.html`
+Open a terminal in C:\xampp\htdocs.
+
+Clone the repository using the following command:
+
+git clone https://github.com/Gabriel-coode/daw2_cruz_gabriel_pj6f4a11.git orderManagementApp
+
+Start Apache from the XAMPP Control Panel.
+
+Make sure Apache SSL is enabled and port 443 is available.
+
+Open the application at:
+
+https://localhost/orderManagementApp/application/client/index.html
+
+The second argument of the git clone command creates the local folder named orderManagementApp, while keeping the repository name required by the assignment.
 
 The local XAMPP installation may use a self-signed SSL certificate. In that case, the browser may display a certificate trust warning.
 
@@ -39,4 +50,4 @@ This warning does not necessarily mean that HTTPS encryption is disabled. A trus
 
 The application uses relative paths so navigation and requests to the PHP server can operate through HTTPS.
 
-**Note:** The Apache SSL configuration is part of the local XAMPP installation and is not included in the project's Git repository.
+Note: The Apache SSL configuration is part of the local XAMPP installation and is not included in the project's Git repository.

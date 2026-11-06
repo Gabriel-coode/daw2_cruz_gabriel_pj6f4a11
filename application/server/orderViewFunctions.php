@@ -41,10 +41,14 @@ function renderPageStart($title) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>' . escapeHtml($title) . '</title>
+        <link rel="stylesheet" href="../client/styles.css">
     </head>
     <body>
     <main>
-        <h1>' . escapeHtml($title) . '</h1>';
+        <header class="brand-header">
+            <img src="../client/brand-mark.svg" alt="Automotive Order Management logo">
+            <div><h1>' . escapeHtml($title) . '</h1><p>Automotive Order Management</p></div>
+        </header>';
 }
 
 function renderNavigation() {

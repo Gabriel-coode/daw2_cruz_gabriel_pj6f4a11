@@ -27,7 +27,7 @@ async function checkSession() {
             "../server/sessionStatus.php",
             {
                 method: "GET",
-                credentials: "same-origin",
+                credentials: "same-origin", 
                 cache: "no-store"
             }
         );

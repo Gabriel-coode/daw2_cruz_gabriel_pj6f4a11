@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Order | Automotive Order Management</title>
+    <link rel="stylesheet" href="styles.css">
     <script src="createOrder.js" defer></script>
 </head>
 <body>
     
     <main>
-        <h1>Create New Order</h1>
+        <header class="brand-header">
+            <img src="brand-mark.svg" alt="Automotive Order Management logo">
+            <div><h1>Create New Order</h1><p>Parts and customer details</p></div>
+        </header>
 
         <form id="orderForm">
 
@@ -82,6 +86,17 @@
         </form>
 
         <p id="result" role="status" aria-alive="polite"></p>
+
+        
+        <nav aria-label="Navigation">
+            <p>
+                <a href="operations.html">Back to Operations</a>
+            </p>
+
+            <p>
+                <a href="index.html">Back to Home</a>
+            </p>
+        </nav>
 
     </main>
 

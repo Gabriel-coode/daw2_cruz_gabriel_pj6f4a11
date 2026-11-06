@@ -1,6 +1,9 @@
 <?php
 
 require_once __DIR__ . "/orderViewFunctions.php";
+require_once __DIR__ . "/auth.php";
+
+requireAuthentication("html");
 
 if ($_SERVER["REQUEST_METHOD"] !== "GET") {
     http_response_code(405);

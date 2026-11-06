@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Automotive Order Management</title>
+    <script src="login.js" defer></script>
+</head>
+<body>
+
+    <main>
+        <h1>User Authentication</h1>
+
+        <form id="loginForm">
+
+            <div>
+                <label for="username">Username</label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    autocomplete="username"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+            <button type="submit" id="loginButton">
+                Access Operations Menu
+            </button>
+
+        </form>
+
+        <p id="loginMessage" role="alert"></p>
+
+        <nav aria-label="Navigation">
+            <a href="index.html">Back to Home</a>
+        </nav>
+    </main>
+    
+</body>
+</html>

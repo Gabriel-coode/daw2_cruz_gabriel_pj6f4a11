@@ -2,31 +2,9 @@
 
     /* importamos el archivo con el array asociativo de productos */
     require_once __DIR__ . "/products.php";
+    require_once __DIR__ . "/auth.php";
 
-    $order = [
-
-        "orderId" => "ORD-004",
-
-        "customer" => [
-            "id" => "000123M",
-            "name" => "Gabriel Cruz",
-            "email" => "gabrielcruz@gmail.com",
-            "phone" => "666777834",
-            "address" => "Barcelona Street 1234"
-        ],
-
-        "products" => [
-            [
-                "id" => "BAT-003",
-                "quantity" => 9
-            ],
-            [
-                "id" => "WHE-002",
-                "quantity" => 10 
-            ]
-        ],  
-
-    ];
+    requireAuthentication("json");
 
 
     const VAT_RATE = 0.21;
@@ -40,6 +18,8 @@
 
         return round($subTotal *  (1 + VAT_RATE), 2); 
     }
+
+   
 
     function validateOrderData($order){
 
@@ -207,18 +187,79 @@
 
     }
 
+    header("Content-Type: application/json; charset=utf-8");
+
+    // Only allow POST requests
+    if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+        http_response_code(405);
+
+        header("Allow: POST");
+
+        echo json_encode(["error" => "Method not allowed"]);
+
+        exit;
+    }
+
     try {
 
-        validateOrderData($order);
+    // Check incoming products structure
+    if (!isset($_POST["products"]) || !is_array($_POST["products"])){
+        throw new InvalidArgumentException("Select al least one product");
+    
+    }
 
-        $order = createOrder($order, $products);
+    // Validate each received product structure
+    foreach ($_POST["products"] as $product) {
 
-        saveOrder($order);
+        if (!is_array($product) || !isset($product["id"], $product["quantity"]) || !is_string($product["id"]) || !is_string($product["quantity"])) {
+            
+            throw new InvalidArgumentException("Ivalid product data");
 
-        echo "Total with VAT: " . number_format($order['totalWithVat'], 2) .  " €"; 
-        
-    } catch (InvalidArgumentException | RuntimeException $e){
-        echo "Error: " . $e->getMessage();
+        }
+
+    }
+
+    // Buil de order from the POST request
+    $order = [
+        "orderId" => $_POST["orderId"] ?? null,
+
+         "customer" => [
+            "name"=> $_POST["name"] ?? null,
+            "address" => $_POST["address"] ?? null,
+            "email" => $_POST["email"] ?? null,
+            "phone" =>$_POST["phone"] ?? null
+         ],
+
+         "products" => $_POST["products"]
+    ];
+
+    // Validate customer and order information
+    validateOrderData($order);
+
+    // Validate products and calculate total
+    $order = createOrder($order, $products);
+
+    // Save the complete order
+    saveOrder($order);
+
+    // Successful creation
+    http_response_code(201);
+
+    echo json_encode(["totalWithVat" => $order["totalWithVat"]]);
+
+    } catch (InvalidArgumentException $e){
+
+        $status = str_contains($e->getMessage(), "already exists") ? 409 : 400;
+
+        http_response_code($status);
+
+        echo json_encode(["error" => $e->getMessage()]);
+
+    } catch (RuntimeException $e) {
+
+        http_response_code(500);
+
+        echo json_encode(["error" => "Internal server error"]);
     }
     
 ?>
